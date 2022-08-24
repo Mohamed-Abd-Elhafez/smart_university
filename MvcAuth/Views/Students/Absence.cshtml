@@ -1,0 +1,23 @@
+﻿@model MvcAuth.Models.ModelView.AbsenceView
+@{
+    ViewBag.Title = "Absence";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+@using (Html.BeginForm("ComparePic", "Students", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+<section class="container d-flex justify-content-center align-items-center h-100 mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-center bg-light" style="width: 25rem">
+                <div class="card-body">
+                    <h3 class="card-title text-dark">Upload Attendance QR code</h3>
+                    <br />
+                    <input type="file" name="ImageData" id="ImageData" onchange="fileCheck(this);" /><br />
+                    <input type="submit" value="Upload" class="btn btn-danger mt-5" onchange="fileCheck(this);" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+}

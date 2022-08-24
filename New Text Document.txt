@@ -1,0 +1,749 @@
+USE [master]
+GO
+/****** Object:  Database [UniversityDB]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE DATABASE [UniversityDB]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'UniversityDB', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\UniversityDB.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'UniversityDB_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS\MSSQL\DATA\UniversityDB_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+GO
+ALTER DATABASE [UniversityDB] SET COMPATIBILITY_LEVEL = 140
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [UniversityDB].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [UniversityDB] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [UniversityDB] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [UniversityDB] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [UniversityDB] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [UniversityDB] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [UniversityDB] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [UniversityDB] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [UniversityDB] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [UniversityDB] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [UniversityDB] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [UniversityDB] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [UniversityDB] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [UniversityDB] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [UniversityDB] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [UniversityDB] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [UniversityDB] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [UniversityDB] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [UniversityDB] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [UniversityDB] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [UniversityDB] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [UniversityDB] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [UniversityDB] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [UniversityDB] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [UniversityDB] SET  MULTI_USER 
+GO
+ALTER DATABASE [UniversityDB] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [UniversityDB] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [UniversityDB] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [UniversityDB] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [UniversityDB] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [UniversityDB] SET QUERY_STORE = OFF
+GO
+USE [UniversityDB]
+GO
+/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AdminTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AdminTbl](
+	[Admin_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Admin_Name] [nvarchar](50) NULL,
+	[Admin_Email] [nvarchar](50) NULL,
+	[Admin_Pass] [nvarchar](50) NULL,
+	[Admin_Pic] [image] NULL,
+ CONSTRAINT [PK_AdminTbl] PRIMARY KEY CLUSTERED 
+(
+	[Admin_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetRoles]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetRoles](
+	[Id] [nvarchar](256) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserClaims](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+	[ClaimType] [nvarchar](max) NULL,
+	[ClaimValue] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.AspNetUserClaims] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserLogins](
+	[LoginProvider] [nvarchar](128) NOT NULL,
+	[ProviderKey] [nvarchar](128) NOT NULL,
+	[UserId] [nvarchar](128) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserLogins] PRIMARY KEY CLUSTERED 
+(
+	[LoginProvider] ASC,
+	[ProviderKey] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUserRoles](
+	[UserId] [nvarchar](128) NOT NULL,
+	[RoleId] [nvarchar](256) NOT NULL,
+ CONSTRAINT [PK_dbo.AspNetUserRoles] PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC,
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[AspNetUsers]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [nvarchar](128) NOT NULL,
+	[FullName] [nvarchar](max) NULL,
+	[Email] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NULL,
+	[TwoFactorEnabled] [bit] NULL,
+	[LockoutEndDateUtc] [datetime] NULL,
+	[LockoutEnabled] [bit] NULL,
+	[AccessFailedCount] [int] NULL,
+	[UserName] [nvarchar](256) NULL,
+ CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Attendtbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Attendtbl](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[St_ID] [int] NOT NULL,
+	[Date] [nvarchar](max) NOT NULL,
+	[Course_ID] [int] NULL,
+ CONSTRAINT [PK_Attendtbl] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[CourseTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CourseTbl](
+	[Course_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Course_Name] [nvarchar](100) NULL,
+ CONSTRAINT [PK_CourseTbl] PRIMARY KEY CLUSTERED 
+(
+	[Course_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[DepartmentTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DepartmentTbl](
+	[Dep_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Dep_Name] [nvarchar](50) NULL,
+	[Prof_ID] [nvarchar](50) NULL,
+ CONSTRAINT [PK_DepartmentTbl] PRIMARY KEY CLUSTERED 
+(
+	[Dep_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[EventTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[EventTbl](
+	[Event_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Event_Name] [nvarchar](100) NOT NULL,
+	[Event_Content] [nvarchar](250) NOT NULL,
+	[Admin_ID] [int] NULL,
+ CONSTRAINT [PK_EventTbl] PRIMARY KEY CLUSTERED 
+(
+	[Event_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Exam_Result_Tbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Exam_Result_Tbl](
+	[Res_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Ex_ID] [int] NULL,
+	[St_ID] [int] NULL,
+	[Res_Degree] [int] NULL,
+ CONSTRAINT [PK_Exam_Result_Tbl] PRIMARY KEY CLUSTERED 
+(
+	[Res_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ExamTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ExamTbl](
+	[Ex_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Prof_ID] [int] NOT NULL,
+	[Ex_Name] [nvarchar](150) NOT NULL,
+	[Ex_Info] [nchar](150) NOT NULL,
+	[Ex_Total] [int] NOT NULL,
+	[Ex_Munite_Duration] [int] NOT NULL,
+	[Ex_Start_On] [datetime] NOT NULL,
+	[Ex_End_On] [datetime] NOT NULL,
+	[Ex_Passing_Mark] [int] NOT NULL,
+	[Course_ID] [int] NOT NULL,
+	[IsShow] [bit] NOT NULL,
+ CONSTRAINT [PK_ExamTbl] PRIMARY KEY CLUSTERED 
+(
+	[Ex_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MapTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MapTbl](
+	[Map_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Map_Content] [image] NULL,
+	[Admin_ID] [int] NULL,
+ CONSTRAINT [PK_MapTbl] PRIMARY KEY CLUSTERED 
+(
+	[Map_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[NewsTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[NewsTbl](
+	[News_ID] [int] IDENTITY(1,1) NOT NULL,
+	[News_Title] [nvarchar](150) NULL,
+	[News_Content] [nchar](350) NULL,
+	[Admin_ID] [int] NULL,
+ CONSTRAINT [PK_NewsTbl] PRIMARY KEY CLUSTERED 
+(
+	[News_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ParkingTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ParkingTbl](
+	[Faculty_ID] [int] NOT NULL,
+	[Firstparking_ID] [int] NULL,
+	[Secparking_ID] [int] NULL,
+	[Thirdparking_ID] [int] NULL,
+ CONSTRAINT [PK_ParkingTbl] PRIMARY KEY CLUSTERED 
+(
+	[Faculty_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Post_Reply_Tbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Post_Reply_Tbl](
+	[Reply_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Reply_Content] [nvarchar](150) NOT NULL,
+	[Post_ID] [int] NOT NULL,
+	[St_ID] [int] NULL,
+ CONSTRAINT [PK_Post_Reply_Tbl_1] PRIMARY KEY CLUSTERED 
+(
+	[Reply_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Post_Reply_Tbls]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Post_Reply_Tbls](
+	[Post_ID] [int] NOT NULL,
+	[St_ID] [int] NOT NULL,
+	[Reply_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Reply_Content] [nvarchar](150) NOT NULL,
+ CONSTRAINT [PK_Post_Reply_Tbl] PRIMARY KEY CLUSTERED 
+(
+	[Reply_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PostTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PostTbl](
+	[Post_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Post_Content] [nvarchar](250) NOT NULL,
+	[Post_Date] [datetime] NOT NULL,
+	[St_ID] [int] NULL,
+ CONSTRAINT [PK_PostTbl] PRIMARY KEY CLUSTERED 
+(
+	[Post_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Prof_Course_Tbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Prof_Course_Tbl](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Prof_ID] [int] NULL,
+	[Course_ID] [int] NULL,
+ CONSTRAINT [PK_Prof_Course_Tbl] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Prof_Lecture_TBL]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Prof_Lecture_TBL](
+	[Prof_Lecture] [varbinary](max) NOT NULL,
+	[Prof_Lecture_Name] [nvarchar](50) NOT NULL,
+	[Prof_Lecture_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Prof_ID] [int] NULL,
+	[Course_ID] [int] NULL,
+ CONSTRAINT [PK_Prof_Lecture_TBL] PRIMARY KEY CLUSTERED 
+(
+	[Prof_Lecture_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Prof_Video_TBL]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Prof_Video_TBL](
+	[Prof_ID] [int] NULL,
+	[Prof_Video] [varchar](50) NOT NULL,
+	[Prof_Video_Name] [nvarchar](50) NOT NULL,
+	[Video_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Course_ID] [int] NULL,
+ CONSTRAINT [PK_Prof_Video_TBL] PRIMARY KEY CLUSTERED 
+(
+	[Video_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ProfessorTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ProfessorTbl](
+	[Prof_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Prof_Name] [nvarchar](50) NULL,
+	[Prof_Email] [nvarchar](50) NULL,
+	[Prof_Pass] [nvarchar](max) NULL,
+	[IsAccepted] [bit] NULL,
+	[Prof_Subject] [nvarchar](50) NULL,
+	[Prof_Image] [image] NULL,
+ CONSTRAINT [PK_ProfessorTbl] PRIMARY KEY CLUSTERED 
+(
+	[Prof_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[QrTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[QrTbl](
+	[QR_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Prof_ID] [int] NULL,
+	[QRCodeName] [nvarchar](max) NULL,
+	[QRCodeImage] [image] NULL,
+	[Date] [date] NULL,
+	[Course_ID] [int] NULL,
+ CONSTRAINT [PK_QrTbl] PRIMARY KEY CLUSTERED 
+(
+	[QR_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[QuestionsTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[QuestionsTbl](
+	[Ex_ID] [int] NOT NULL,
+	[Question_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Question] [nvarchar](150) NOT NULL,
+	[First_Choice] [nvarchar](150) NOT NULL,
+	[Second_Choice] [nvarchar](150) NOT NULL,
+	[Third_Choice] [nvarchar](150) NOT NULL,
+	[Correct_Choice] [nvarchar](150) NOT NULL,
+	[Fourth_Choice] [nvarchar](150) NOT NULL,
+	[Degree] [int] NOT NULL,
+ CONSTRAINT [PK_QuestionsTbl] PRIMARY KEY CLUSTERED 
+(
+	[Question_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RegisterCoursesTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RegisterCoursesTbl](
+	[IdRegister] [int] IDENTITY(1,1) NOT NULL,
+	[St_ID] [int] NOT NULL,
+	[Course_ID] [int] NOT NULL,
+	[IsApprove] [bit] NOT NULL,
+ CONSTRAINT [PK_RegisterCoursesTbl] PRIMARY KEY CLUSTERED 
+(
+	[IdRegister] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[StudentTbl]    Script Date: 6/3/2022 1:16:05 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StudentTbl](
+	[St_ID] [int] IDENTITY(1,1) NOT NULL,
+	[St_Name] [nvarchar](50) NULL,
+	[St_Email] [nvarchar](50) NULL,
+	[St_Password] [nvarchar](max) NULL,
+	[Dep_ID] [int] NULL,
+	[St_Image] [image] NULL,
+ CONSTRAINT [PK_StudentTbl] PRIMARY KEY CLUSTERED 
+(
+	[St_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [RoleNameIndex]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[AspNetRoles]
+(
+	[Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_UserId]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[AspNetUserClaims]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_UserId]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[AspNetUserLogins]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_RoleId]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE NONCLUSTERED INDEX [IX_RoleId] ON [dbo].[AspNetUserRoles]
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [IX_UserId]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE NONCLUSTERED INDEX [IX_UserId] ON [dbo].[AspNetUserRoles]
+(
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UserNameIndex]    Script Date: 6/3/2022 1:16:05 AM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [UserNameIndex] ON [dbo].[AspNetUsers]
+(
+	[UserName] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[AspNetUserClaims]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_dbo.AspNetUserClaims_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserLogins]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_dbo.AspNetUserLogins_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[AspNetRoles] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetRoles_RoleId]
+GO
+ALTER TABLE [dbo].[AspNetUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+REFERENCES [dbo].[AspNetUsers] ([Id])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+GO
+ALTER TABLE [dbo].[Attendtbl]  WITH CHECK ADD  CONSTRAINT [FK_Attendtbl_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Attendtbl] CHECK CONSTRAINT [FK_Attendtbl_CourseTbl]
+GO
+ALTER TABLE [dbo].[Attendtbl]  WITH CHECK ADD  CONSTRAINT [FK_Attendtbl_StudentTbl] FOREIGN KEY([St_ID])
+REFERENCES [dbo].[StudentTbl] ([St_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Attendtbl] CHECK CONSTRAINT [FK_Attendtbl_StudentTbl]
+GO
+ALTER TABLE [dbo].[EventTbl]  WITH CHECK ADD  CONSTRAINT [FK_EventTbl_AdminTbl] FOREIGN KEY([Admin_ID])
+REFERENCES [dbo].[AdminTbl] ([Admin_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[EventTbl] CHECK CONSTRAINT [FK_EventTbl_AdminTbl]
+GO
+ALTER TABLE [dbo].[Exam_Result_Tbl]  WITH CHECK ADD  CONSTRAINT [FK_Exam_Result_Tbl_ExamTbl] FOREIGN KEY([Ex_ID])
+REFERENCES [dbo].[ExamTbl] ([Ex_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Exam_Result_Tbl] CHECK CONSTRAINT [FK_Exam_Result_Tbl_ExamTbl]
+GO
+ALTER TABLE [dbo].[Exam_Result_Tbl]  WITH CHECK ADD  CONSTRAINT [FK_Exam_Result_Tbl_StudentTbl] FOREIGN KEY([St_ID])
+REFERENCES [dbo].[StudentTbl] ([St_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Exam_Result_Tbl] CHECK CONSTRAINT [FK_Exam_Result_Tbl_StudentTbl]
+GO
+ALTER TABLE [dbo].[ExamTbl]  WITH CHECK ADD  CONSTRAINT [FK_ExamTbl_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+GO
+ALTER TABLE [dbo].[ExamTbl] CHECK CONSTRAINT [FK_ExamTbl_CourseTbl]
+GO
+ALTER TABLE [dbo].[ExamTbl]  WITH CHECK ADD  CONSTRAINT [FK_ExamTbl_ProfessorTbl] FOREIGN KEY([Prof_ID])
+REFERENCES [dbo].[ProfessorTbl] ([Prof_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[ExamTbl] CHECK CONSTRAINT [FK_ExamTbl_ProfessorTbl]
+GO
+ALTER TABLE [dbo].[MapTbl]  WITH CHECK ADD  CONSTRAINT [FK_MapTbl_AdminTbl] FOREIGN KEY([Admin_ID])
+REFERENCES [dbo].[AdminTbl] ([Admin_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[MapTbl] CHECK CONSTRAINT [FK_MapTbl_AdminTbl]
+GO
+ALTER TABLE [dbo].[Post_Reply_Tbl]  WITH CHECK ADD  CONSTRAINT [FK_Post_Reply_Tbl_PostTbl] FOREIGN KEY([Post_ID])
+REFERENCES [dbo].[PostTbl] ([Post_ID])
+GO
+ALTER TABLE [dbo].[Post_Reply_Tbl] CHECK CONSTRAINT [FK_Post_Reply_Tbl_PostTbl]
+GO
+ALTER TABLE [dbo].[Post_Reply_Tbl]  WITH CHECK ADD  CONSTRAINT [FK_Post_Reply_Tbl_StudentTbl] FOREIGN KEY([St_ID])
+REFERENCES [dbo].[StudentTbl] ([St_ID])
+GO
+ALTER TABLE [dbo].[Post_Reply_Tbl] CHECK CONSTRAINT [FK_Post_Reply_Tbl_StudentTbl]
+GO
+ALTER TABLE [dbo].[PostTbl]  WITH CHECK ADD  CONSTRAINT [FK_PostTbl_StudentTbl1] FOREIGN KEY([St_ID])
+REFERENCES [dbo].[StudentTbl] ([St_ID])
+GO
+ALTER TABLE [dbo].[PostTbl] CHECK CONSTRAINT [FK_PostTbl_StudentTbl1]
+GO
+ALTER TABLE [dbo].[Prof_Course_Tbl]  WITH CHECK ADD  CONSTRAINT [FK_Prof_Course_Tbl_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Prof_Course_Tbl] CHECK CONSTRAINT [FK_Prof_Course_Tbl_CourseTbl]
+GO
+ALTER TABLE [dbo].[Prof_Course_Tbl]  WITH CHECK ADD  CONSTRAINT [FK_Prof_Course_Tbl_ProfessorTbl] FOREIGN KEY([Prof_ID])
+REFERENCES [dbo].[ProfessorTbl] ([Prof_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Prof_Course_Tbl] CHECK CONSTRAINT [FK_Prof_Course_Tbl_ProfessorTbl]
+GO
+ALTER TABLE [dbo].[Prof_Lecture_TBL]  WITH CHECK ADD  CONSTRAINT [FK_Prof_Lecture_TBL_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Prof_Lecture_TBL] CHECK CONSTRAINT [FK_Prof_Lecture_TBL_CourseTbl]
+GO
+ALTER TABLE [dbo].[Prof_Video_TBL]  WITH CHECK ADD  CONSTRAINT [FK_Prof_Video_TBL_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Prof_Video_TBL] CHECK CONSTRAINT [FK_Prof_Video_TBL_CourseTbl]
+GO
+ALTER TABLE [dbo].[QrTbl]  WITH CHECK ADD  CONSTRAINT [FK_QrTbl_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[QrTbl] CHECK CONSTRAINT [FK_QrTbl_CourseTbl]
+GO
+ALTER TABLE [dbo].[QrTbl]  WITH CHECK ADD  CONSTRAINT [FK_QrTbl_ProfessorTbl] FOREIGN KEY([Prof_ID])
+REFERENCES [dbo].[ProfessorTbl] ([Prof_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[QrTbl] CHECK CONSTRAINT [FK_QrTbl_ProfessorTbl]
+GO
+ALTER TABLE [dbo].[QuestionsTbl]  WITH CHECK ADD  CONSTRAINT [FK_QuestionsTbl_ExamTbl] FOREIGN KEY([Ex_ID])
+REFERENCES [dbo].[ExamTbl] ([Ex_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[QuestionsTbl] CHECK CONSTRAINT [FK_QuestionsTbl_ExamTbl]
+GO
+ALTER TABLE [dbo].[RegisterCoursesTbl]  WITH CHECK ADD  CONSTRAINT [FK_RegisterCoursesTbl_CourseTbl] FOREIGN KEY([Course_ID])
+REFERENCES [dbo].[CourseTbl] ([Course_ID])
+GO
+ALTER TABLE [dbo].[RegisterCoursesTbl] CHECK CONSTRAINT [FK_RegisterCoursesTbl_CourseTbl]
+GO
+ALTER TABLE [dbo].[RegisterCoursesTbl]  WITH CHECK ADD  CONSTRAINT [FK_RegisterCoursesTbl_StudentTbl] FOREIGN KEY([St_ID])
+REFERENCES [dbo].[StudentTbl] ([St_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[RegisterCoursesTbl] CHECK CONSTRAINT [FK_RegisterCoursesTbl_StudentTbl]
+GO
+ALTER TABLE [dbo].[StudentTbl]  WITH CHECK ADD  CONSTRAINT [FK_StudentTbl_DepartmentTbl] FOREIGN KEY([Dep_ID])
+REFERENCES [dbo].[DepartmentTbl] ([Dep_ID])
+ON UPDATE CASCADE
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[StudentTbl] CHECK CONSTRAINT [FK_StudentTbl_DepartmentTbl]
+GO
+USE [master]
+GO
+ALTER DATABASE [UniversityDB] SET  READ_WRITE 
+GO

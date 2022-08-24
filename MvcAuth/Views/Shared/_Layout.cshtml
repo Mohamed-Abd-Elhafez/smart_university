@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Content/Admin/img/favicon.ico" />
+    <title>@ViewBag.Title - KFS University</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            color: #555555;
+            font-family: "Lato", sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            line-height: 1.7em;
+        }
+
+        div.panel-body {
+            overflow: scroll;
+            background: url('../../pic/geometry2 (1).webp');
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

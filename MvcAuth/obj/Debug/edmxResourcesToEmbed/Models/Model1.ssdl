@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UniversityDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminTbl">
+    <Key>
+      <PropertyRef Name="Admin_ID" />
+    </Key>
+    <Property Name="Admin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Admin_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Admin_Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Admin_Pass" Type="nvarchar" MaxLength="50" />
+    <Property Name="Admin_Pic" Type="image" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" />
+    <Property Name="TwoFactorEnabled" Type="bit" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" />
+    <Property Name="AccessFailedCount" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Attendtbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="St_ID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="CourseTbl">
+    <Key>
+      <PropertyRef Name="Course_ID" />
+    </Key>
+    <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DepartmentTbl">
+    <Key>
+      <PropertyRef Name="Dep_ID" />
+    </Key>
+    <Property Name="Dep_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dep_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prof_ID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EventTbl">
+    <Key>
+      <PropertyRef Name="Event_ID" />
+    </Key>
+    <Property Name="Event_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Event_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Event_Content" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Admin_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Exam_Result_Tbl">
+    <Key>
+      <PropertyRef Name="Res_ID" />
+    </Key>
+    <Property Name="Res_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ex_ID" Type="int" />
+    <Property Name="St_ID" Type="int" />
+    <Property Name="Res_Degree" Type="int" />
+  </EntityType>
+  <EntityType Name="ExamTbl">
+    <Key>
+      <PropertyRef Name="Ex_ID" />
+    </Key>
+    <Property Name="Ex_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prof_ID" Type="int" Nullable="false" />
+    <Property Name="Ex_Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Ex_Info" Type="nchar" MaxLength="150" Nullable="false" />
+    <Property Name="Ex_Total" Type="int" Nullable="false" />
+    <Property Name="Ex_Munite_Duration" Type="int" Nullable="false" />
+    <Property Name="Ex_Start_On" Type="datetime" Nullable="false" />
+    <Property Name="Ex_End_On" Type="datetime" Nullable="false" />
+    <Property Name="Ex_Passing_Mark" Type="int" Nullable="false" />
+    <Property Name="Course_ID" Type="int" Nullable="false" />
+    <Property Name="IsShow" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MapTbl">
+    <Key>
+      <PropertyRef Name="Map_ID" />
+    </Key>
+    <Property Name="Map_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Map_Content" Type="image" />
+    <Property Name="Admin_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="NewsTbl">
+    <Key>
+      <PropertyRef Name="News_ID" />
+    </Key>
+    <Property Name="News_ID" Type="int" Nullable="false" />
+    <Property Name="News_Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="News_Content" Type="nchar" MaxLength="10" />
+    <Property Name="Admin_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="ParkingTbl">
+    <Key>
+      <PropertyRef Name="Faculty_ID" />
+    </Key>
+    <Property Name="Faculty_ID" Type="int" Nullable="false" />
+    <Property Name="Firstparking_ID" Type="int" />
+    <Property Name="Secparking_ID" Type="int" />
+    <Property Name="Thirdparking_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Post_Reply_Tbl">
+    <Key>
+      <PropertyRef Name="Reply_ID" />
+    </Key>
+    <Property Name="Reply_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reply_Content" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Post_ID" Type="int" Nullable="false" />
+    <Property Name="St_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Post_Reply_Tbls">
+    <Key>
+      <PropertyRef Name="Reply_ID" />
+    </Key>
+    <Property Name="Post_ID" Type="int" Nullable="false" />
+    <Property Name="St_ID" Type="int" Nullable="false" />
+    <Property Name="Reply_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reply_Content" Type="nvarchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostTbl">
+    <Key>
+      <PropertyRef Name="Post_ID" />
+    </Key>
+    <Property Name="Post_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Post_Content" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Post_Date" Type="datetime" Nullable="false" />
+    <Property Name="St_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Prof_Course_Tbl">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prof_ID" Type="int" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Prof_Lecture_TBL">
+    <Key>
+      <PropertyRef Name="Prof_Lecture_ID" />
+    </Key>
+    <Property Name="Prof_Lecture" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Prof_Lecture_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prof_Lecture_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prof_ID" Type="int" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Prof_Video_TBL">
+    <Key>
+      <PropertyRef Name="Video_ID" />
+    </Key>
+    <Property Name="Prof_ID" Type="int" />
+    <Property Name="Prof_Video" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prof_Video_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Video_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="ProfessorTbl">
+    <Key>
+      <PropertyRef Name="Prof_ID" />
+    </Key>
+    <Property Name="Prof_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prof_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prof_Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prof_Pass" Type="nvarchar(max)" />
+    <Property Name="IsAccepted" Type="bit" />
+    <Property Name="Prof_Subject" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prof_Image" Type="image" />
+  </EntityType>
+  <EntityType Name="QrTbl">
+    <Key>
+      <PropertyRef Name="QR_ID" />
+    </Key>
+    <Property Name="QR_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prof_ID" Type="int" />
+    <Property Name="QRCodeName" Type="nvarchar(max)" />
+    <Property Name="QRCodeImage" Type="image" />
+    <Property Name="Date" Type="date" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="QuestionsTbl">
+    <Key>
+      <PropertyRef Name="Question_ID" />
+    </Key>
+    <Property Name="Ex_ID" Type="int" Nullable="false" />
+    <Property Name="Question_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="First_Choice" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Second_Choice" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Third_Choice" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Correct_Choice" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Fourth_Choice" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Degree" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RegisterCoursesTbl">
+    <Key>
+      <PropertyRef Name="IdRegister" />
+    </Key>
+    <Property Name="IdRegister" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="St_ID" Type="int" Nullable="false" />
+    <Property Name="Course_ID" Type="int" Nullable="false" />
+    <Property Name="IsApprove" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentTbl">
+    <Key>
+      <PropertyRef Name="St_ID" />
+    </Key>
+    <Property Name="St_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="St_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="St_Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="St_Password" Type="nvarchar(max)" />
+    <Property Name="Dep_ID" Type="int" />
+    <Property Name="St_Image" Type="image" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Attendtbl_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Attendtbl" Type="Self.Attendtbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Attendtbl">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Attendtbl_StudentTbl">
+    <End Role="StudentTbl" Type="Self.StudentTbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Attendtbl" Type="Self.Attendtbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentTbl">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="Attendtbl">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTbl_AdminTbl">
+    <End Role="AdminTbl" Type="Self.AdminTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EventTbl" Type="Self.EventTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTbl">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="EventTbl">
+        <PropertyRef Name="Admin_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exam_Result_Tbl_ExamTbl">
+    <End Role="ExamTbl" Type="Self.ExamTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Exam_Result_Tbl" Type="Self.Exam_Result_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExamTbl">
+        <PropertyRef Name="Ex_ID" />
+      </Principal>
+      <Dependent Role="Exam_Result_Tbl">
+        <PropertyRef Name="Ex_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exam_Result_Tbl_StudentTbl">
+    <End Role="StudentTbl" Type="Self.StudentTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Exam_Result_Tbl" Type="Self.Exam_Result_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentTbl">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="Exam_Result_Tbl">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExamTbl_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ExamTbl" Type="Self.ExamTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="ExamTbl">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExamTbl_ProfessorTbl">
+    <End Role="ProfessorTbl" Type="Self.ProfessorTbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ExamTbl" Type="Self.ExamTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfessorTbl">
+        <PropertyRef Name="Prof_ID" />
+      </Principal>
+      <Dependent Role="ExamTbl">
+        <PropertyRef Name="Prof_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MapTbl_AdminTbl">
+    <End Role="AdminTbl" Type="Self.AdminTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MapTbl" Type="Self.MapTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTbl">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="MapTbl">
+        <PropertyRef Name="Admin_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsTbl_AdminTbl">
+    <End Role="AdminTbl" Type="Self.AdminTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NewsTbl" Type="Self.NewsTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminTbl">
+        <PropertyRef Name="Admin_ID" />
+      </Principal>
+      <Dependent Role="NewsTbl">
+        <PropertyRef Name="Admin_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Reply_Tbl_PostTbl">
+    <End Role="PostTbl" Type="Self.PostTbl" Multiplicity="1" />
+    <End Role="Post_Reply_Tbl" Type="Self.Post_Reply_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PostTbl">
+        <PropertyRef Name="Post_ID" />
+      </Principal>
+      <Dependent Role="Post_Reply_Tbl">
+        <PropertyRef Name="Post_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Post_Reply_Tbl_StudentTbl">
+    <End Role="StudentTbl" Type="Self.StudentTbl" Multiplicity="0..1" />
+    <End Role="Post_Reply_Tbl" Type="Self.Post_Reply_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentTbl">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="Post_Reply_Tbl">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostTbl_StudentTbl1">
+    <End Role="StudentTbl" Type="Self.StudentTbl" Multiplicity="0..1" />
+    <End Role="PostTbl" Type="Self.PostTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentTbl">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="PostTbl">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prof_Course_Tbl_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Prof_Course_Tbl" Type="Self.Prof_Course_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Prof_Course_Tbl">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prof_Course_Tbl_ProfessorTbl">
+    <End Role="ProfessorTbl" Type="Self.ProfessorTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Prof_Course_Tbl" Type="Self.Prof_Course_Tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfessorTbl">
+        <PropertyRef Name="Prof_ID" />
+      </Principal>
+      <Dependent Role="Prof_Course_Tbl">
+        <PropertyRef Name="Prof_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prof_Lecture_TBL_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Prof_Lecture_TBL" Type="Self.Prof_Lecture_TBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Prof_Lecture_TBL">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Prof_Video_TBL_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Prof_Video_TBL" Type="Self.Prof_Video_TBL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="Prof_Video_TBL">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QrTbl_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QrTbl" Type="Self.QrTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="QrTbl">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QrTbl_ProfessorTbl">
+    <End Role="ProfessorTbl" Type="Self.ProfessorTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QrTbl" Type="Self.QrTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfessorTbl">
+        <PropertyRef Name="Prof_ID" />
+      </Principal>
+      <Dependent Role="QrTbl">
+        <PropertyRef Name="Prof_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestionsTbl_ExamTbl">
+    <End Role="ExamTbl" Type="Self.ExamTbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuestionsTbl" Type="Self.QuestionsTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExamTbl">
+        <PropertyRef Name="Ex_ID" />
+      </Principal>
+      <Dependent Role="QuestionsTbl">
+        <PropertyRef Name="Ex_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegisterCoursesTbl_CourseTbl">
+    <End Role="CourseTbl" Type="Self.CourseTbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegisterCoursesTbl" Type="Self.RegisterCoursesTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseTbl">
+        <PropertyRef Name="Course_ID" />
+      </Principal>
+      <Dependent Role="RegisterCoursesTbl">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RegisterCoursesTbl_StudentTbl">
+    <End Role="StudentTbl" Type="Self.StudentTbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RegisterCoursesTbl" Type="Self.RegisterCoursesTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentTbl">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="RegisterCoursesTbl">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentTbl_DepartmentTbl">
+    <End Role="DepartmentTbl" Type="Self.DepartmentTbl" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StudentTbl" Type="Self.StudentTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentTbl">
+        <PropertyRef Name="Dep_ID" />
+      </Principal>
+      <Dependent Role="StudentTbl">
+        <PropertyRef Name="Dep_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="UniversityDBModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminTbl" EntityType="Self.AdminTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Attendtbl" EntityType="Self.Attendtbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseTbl" EntityType="Self.CourseTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentTbl" EntityType="Self.DepartmentTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventTbl" EntityType="Self.EventTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exam_Result_Tbl" EntityType="Self.Exam_Result_Tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamTbl" EntityType="Self.ExamTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MapTbl" EntityType="Self.MapTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsTbl" EntityType="Self.NewsTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ParkingTbl" EntityType="Self.ParkingTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post_Reply_Tbl" EntityType="Self.Post_Reply_Tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post_Reply_Tbls" EntityType="Self.Post_Reply_Tbls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostTbl" EntityType="Self.PostTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prof_Course_Tbl" EntityType="Self.Prof_Course_Tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prof_Lecture_TBL" EntityType="Self.Prof_Lecture_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prof_Video_TBL" EntityType="Self.Prof_Video_TBL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfessorTbl" EntityType="Self.ProfessorTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QrTbl" EntityType="Self.QrTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuestionsTbl" EntityType="Self.QuestionsTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegisterCoursesTbl" EntityType="Self.RegisterCoursesTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentTbl" EntityType="Self.StudentTbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Attendtbl_CourseTbl" Association="Self.FK_Attendtbl_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="Attendtbl" EntitySet="Attendtbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Attendtbl_StudentTbl" Association="Self.FK_Attendtbl_StudentTbl">
+      <End Role="StudentTbl" EntitySet="StudentTbl" />
+      <End Role="Attendtbl" EntitySet="Attendtbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTbl_AdminTbl" Association="Self.FK_EventTbl_AdminTbl">
+      <End Role="AdminTbl" EntitySet="AdminTbl" />
+      <End Role="EventTbl" EntitySet="EventTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exam_Result_Tbl_ExamTbl" Association="Self.FK_Exam_Result_Tbl_ExamTbl">
+      <End Role="ExamTbl" EntitySet="ExamTbl" />
+      <End Role="Exam_Result_Tbl" EntitySet="Exam_Result_Tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exam_Result_Tbl_StudentTbl" Association="Self.FK_Exam_Result_Tbl_StudentTbl">
+      <End Role="StudentTbl" EntitySet="StudentTbl" />
+      <End Role="Exam_Result_Tbl" EntitySet="Exam_Result_Tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExamTbl_CourseTbl" Association="Self.FK_ExamTbl_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="ExamTbl" EntitySet="ExamTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExamTbl_ProfessorTbl" Association="Self.FK_ExamTbl_ProfessorTbl">
+      <End Role="ProfessorTbl" EntitySet="ProfessorTbl" />
+      <End Role="ExamTbl" EntitySet="ExamTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MapTbl_AdminTbl" Association="Self.FK_MapTbl_AdminTbl">
+      <End Role="AdminTbl" EntitySet="AdminTbl" />
+      <End Role="MapTbl" EntitySet="MapTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsTbl_AdminTbl" Association="Self.FK_NewsTbl_AdminTbl">
+      <End Role="AdminTbl" EntitySet="AdminTbl" />
+      <End Role="NewsTbl" EntitySet="NewsTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Reply_Tbl_PostTbl" Association="Self.FK_Post_Reply_Tbl_PostTbl">
+      <End Role="PostTbl" EntitySet="PostTbl" />
+      <End Role="Post_Reply_Tbl" EntitySet="Post_Reply_Tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Post_Reply_Tbl_StudentTbl" Association="Self.FK_Post_Reply_Tbl_StudentTbl">
+      <End Role="StudentTbl" EntitySet="StudentTbl" />
+      <End Role="Post_Reply_Tbl" EntitySet="Post_Reply_Tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostTbl_StudentTbl1" Association="Self.FK_PostTbl_StudentTbl1">
+      <End Role="StudentTbl" EntitySet="StudentTbl" />
+      <End Role="PostTbl" EntitySet="PostTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prof_Course_Tbl_CourseTbl" Association="Self.FK_Prof_Course_Tbl_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="Prof_Course_Tbl" EntitySet="Prof_Course_Tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prof_Course_Tbl_ProfessorTbl" Association="Self.FK_Prof_Course_Tbl_ProfessorTbl">
+      <End Role="ProfessorTbl" EntitySet="ProfessorTbl" />
+      <End Role="Prof_Course_Tbl" EntitySet="Prof_Course_Tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prof_Lecture_TBL_CourseTbl" Association="Self.FK_Prof_Lecture_TBL_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="Prof_Lecture_TBL" EntitySet="Prof_Lecture_TBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Prof_Video_TBL_CourseTbl" Association="Self.FK_Prof_Video_TBL_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="Prof_Video_TBL" EntitySet="Prof_Video_TBL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QrTbl_CourseTbl" Association="Self.FK_QrTbl_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="QrTbl" EntitySet="QrTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QrTbl_ProfessorTbl" Association="Self.FK_QrTbl_ProfessorTbl">
+      <End Role="ProfessorTbl" EntitySet="ProfessorTbl" />
+      <End Role="QrTbl" EntitySet="QrTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestionsTbl_ExamTbl" Association="Self.FK_QuestionsTbl_ExamTbl">
+      <End Role="ExamTbl" EntitySet="ExamTbl" />
+      <End Role="QuestionsTbl" EntitySet="QuestionsTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegisterCoursesTbl_CourseTbl" Association="Self.FK_RegisterCoursesTbl_CourseTbl">
+      <End Role="CourseTbl" EntitySet="CourseTbl" />
+      <End Role="RegisterCoursesTbl" EntitySet="RegisterCoursesTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RegisterCoursesTbl_StudentTbl" Association="Self.FK_RegisterCoursesTbl_StudentTbl">
+      <End Role="StudentTbl" EntitySet="StudentTbl" />
+      <End Role="RegisterCoursesTbl" EntitySet="RegisterCoursesTbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentTbl_DepartmentTbl" Association="Self.FK_StudentTbl_DepartmentTbl">
+      <End Role="DepartmentTbl" EntitySet="DepartmentTbl" />
+      <End Role="StudentTbl" EntitySet="StudentTbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
